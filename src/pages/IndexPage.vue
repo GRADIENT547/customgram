@@ -18,11 +18,10 @@
           bottom-slots
           v-model="text"
           label="Enter your message"
-          outlined
-          class="q-mt-md"
+          @keydown="onEnter"
         >
           <template v-slot:after>
-            <q-btn round dense flat icon="send" />
+            <q-btn round dense flat icon="send" @click="sendMessage" />
           </template>
         </q-input>
       </div>
@@ -32,6 +31,7 @@
 
 
 <script setup>
+import { uid } from 'quasar';
 import { ref } from 'vue';
 
 const text = ref('');
@@ -56,4 +56,26 @@ const messages = ref([
     "sent": true,
   },
 ]);
+
+function sendMessage() {
+  if (text.value.trim() != '')
+    {
+      messages.value.push({
+        "id": uid(),
+        "name": "me",
+        "text": text.value.trim(),
+        "sent": true,
+      });
+
+      text.value = "";
+    }
+}
+
+function onEnter(event)
+{
+  if(event.key == "Enter")
+    {
+      sendMessage();
+    }
+}
 </script>

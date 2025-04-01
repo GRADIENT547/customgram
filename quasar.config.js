@@ -41,6 +41,13 @@ export default defineConfig((/* ctx */) => {
         node: 'node20'
       },
 
+      extendViteConf(viteConf) {
+        viteConf.server = viteConf.server || {};
+        viteConf.server.allowedHosts = [
+          '.ngrok-free.app' // разрешаем все ngrok поддомены
+        ];
+      },
+
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,

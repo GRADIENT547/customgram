@@ -6,6 +6,7 @@
       style="width: 200px; height: 200px"
     >
   </q-page>
+  <h2>Hello world!</h2><h2>Hello world!</h2><h2>Hello world!</h2>
 </template>
 
 <script setup>
